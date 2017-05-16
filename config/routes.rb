@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
- 
+  
   get 'sessions/new'
 
   get 'users/new'
   
-  resources :users, only:[:new, :create]
+  get 'users/delete'
+  
+  
+  
+  resources :users, only:[:new, :create, :edit]
   resources :sessions, only:[:new, :create, :destroy]
 
   get 'comments/create'

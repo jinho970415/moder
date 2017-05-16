@@ -4,10 +4,19 @@
 
 <%= @contents.each do |content| %>
     <a href='contents/<% content.id %>'><%= content.title %></a>
-    
-    <%= link_to '글 수정하기', edit_content_path(content) %>
-    <%= link_to '삭제하기', content_path(content), method: :delete, 
-        data: {confirm: '정말 삭제하시겠습니까?'}%>
-    <br>
-    
+        <%= content.user.nickname %>
+        
+        
+        <% if can? :update, content %>
+            <%= link_to '수정하기', edit_content_path(content) %>
+        <% end %>
+        <% if can? :delete, content %>
+            <%= link_to '삭제하기', content_path(content), method: :delete, 
+                data: {confirm: '정말 삭제하시겠습니까?'}%>
+        <% end %>
+        
+        
+        
+        <br>
 <% end %>
+
